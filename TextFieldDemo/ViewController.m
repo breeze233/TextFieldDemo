@@ -7,8 +7,14 @@
 //
 
 #import "ViewController.h"
+#import "ASTextField.h"
 
-@interface ViewController ()
+@interface ViewController ()<UITextFieldDelegate>
+
+@property (weak, nonatomic) IBOutlet UITextField *textfield1;
+@property (weak, nonatomic) IBOutlet UITextField *textfield2;
+@property (weak, nonatomic) IBOutlet UITextField *textfield3;
+@property (weak, nonatomic) IBOutlet UILabel *textLabel;
 
 @end
 
@@ -16,7 +22,30 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+  
+    self.textfield1.delegate = self;
+    self.textfield2.delegate = self;
+    self.textfield3.delegate = self;
+    
+    
+    [self.textfield2 addTarget:self action:@selector(textFieldTextChange:) forControlEvents:UIControlEventEditingChanged];
+}
+
+
+
+-(void)textFieldTextChange:(UITextField *)textField{
+   
+    if (self.textfield2.text.length == 9) {
+        self.textLabel.text = @"可以点击";
+    }else {
+        self.textLabel.text = @"不能点击 ";
+        NSLog(@"%ld",self.textfield2.text.length);
+    }
+}
+
+- (BOOL)textField:(ASTextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    
+    return [textField textField:textField shouldChangeWithString:string];
 }
 
 
