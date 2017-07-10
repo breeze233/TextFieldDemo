@@ -4,8 +4,21 @@
 
 # ASTextField 实现以下功能 
   1. 卡号输入框 （每4位空格，限制只能输入数字）
+  ![image](https://github.com/breeze233/TextFieldDemo/blob/master/picture/bank.png)
   2. 16禁止输入框 （每2位空格，限制只能输入数字和A-F）
+  ![image](https://github.com/breeze233/TextFieldDemo/blob/master/picture/hex.png)
   3. 可以 修改输入框的PlaceHold 文字颜色 和 大小 及所在位置
-  
+   ![image](https://github.com/breeze233/TextFieldDemo/blob/master/picture/hold.png)
 # 使用 （可在Storyboard 中用 kayPath 设置）
+  StoryBoard 继承 ASTextField
+  kayPath 设置
+  
+    ASKeyBoardType  
+      Bank ： 银行卡号输入框
+      Hex ： 16进制输入框
+      
+    placeholderColor  占位文案颜色
+    
+    placeholderFont   占位字体大小
+    
   ![image](https://github.com/breeze233/TextFieldDemo/blob/master/picture/resort.png)
