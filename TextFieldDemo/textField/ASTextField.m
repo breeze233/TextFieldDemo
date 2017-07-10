@@ -7,6 +7,7 @@
 //
 
 #import "ASTextField.h"
+#import <UIKit/UIKit.h>
 
 @interface ASTextField ()<UITextFieldDelegate>
 
@@ -45,21 +46,29 @@
     }
 }
 
-
+#pragma mark - 修改占位文案颜色
 - (void)setPlaceholderColor:(UIColor *)placeholderColor {
-    
-//   id LS = [self valueForKey:_placeholderLabel.textColor];
-//    NSLog(@"%@",LS);
-    
-    [self setValue:placeholderColor forKeyPath:@"_placeholderLabel.textColor"];
+    id textColor = [self valueForKeyPath:@"_placeholderLabel.textColor"];
+    if (textColor) {
+        [self setValue:placeholderColor forKeyPath:@"_placeholderLabel.textColor"];
+    }
 }
 
+#pragma mark - 修改占位文字大小
 - (void)setPlaceholderFont:(NSInteger)placeholderFont {
-
-    [self setValue:[UIFont systemFontOfSize:placeholderFont] forKeyPath:@"_placeholderLabel.font"];
+    id textFont = [self valueForKeyPath:@"_placeholderLabel.font"];
+    if (textFont) {
+        [self setValue:[UIFont systemFontOfSize:placeholderFont] forKeyPath:@"_placeholderLabel.font"];
+    }
 }
 
 
+#pragma mark -控制placeHolder的位置
+- (CGRect)placeholderRectForBounds:(CGRect)bounds{
+    return bounds;
+}
+
+#pragma mark - textFieldDelegate
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     
     return [self textField:textField shouldChangeWithString:string];
