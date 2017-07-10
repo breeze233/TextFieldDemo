@@ -8,4 +8,4 @@
   3. 可以 修改输入框的PlaceHold 文字颜色 和 大小 及所在位置
   
 # 使用 （可在Storyboard 中用 kayPath 设置）
-  
+  ![image](https://github.com/breeze233/TextFieldDemo/blob/master/picture/resort.png)
