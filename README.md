@@ -22,3 +22,13 @@
     placeholderFont   占位字体大小
     
   ![image](https://github.com/breeze233/TextFieldDemo/blob/master/picture/resort.png)
+
+# 实现
+  本Demo 通过TextField代理实现
+  
+  如果需要在控制器 用代理方法的 添加如下代码
+```objc  
+- (BOOL)textField:(ASTextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    return [textField textField:textField shouldChangeWithString:string];
+}
+```
