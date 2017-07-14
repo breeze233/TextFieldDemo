@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		103BBF4E1F13589700A4F3BB /* ASTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 103BBF4D1F13589700A4F3BB /* ASTextField.m */; };
+		10F8E4611F17659500E579AD /* ASTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 10F8E4601F17659500E579AD /* ASTextField.m */; };
+		10F8E4641F18A00600E579AD /* ASInputPromptView.m in Sources */ = {isa = PBXBuildFile; fileRef = 10F8E4631F18A00600E579AD /* ASInputPromptView.m */; };
 		A5866BF21F0F332B00136E80 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A5866BF11F0F332B00136E80 /* main.m */; };
 		A5866BF51F0F332B00136E80 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A5866BF41F0F332B00136E80 /* AppDelegate.m */; };
 		A5866BF81F0F332B00136E80 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5866BF71F0F332B00136E80 /* ViewController.m */; };
@@ -36,8 +37,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		103BBF4C1F13589700A4F3BB /* ASTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASTextField.h; sourceTree = "<group>"; };
-		103BBF4D1F13589700A4F3BB /* ASTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASTextField.m; sourceTree = "<group>"; };
+		10F8E45F1F17659500E579AD /* ASTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASTextField.h; sourceTree = "<group>"; };
+		10F8E4601F17659500E579AD /* ASTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASTextField.m; sourceTree = "<group>"; };
+		10F8E4621F18A00600E579AD /* ASInputPromptView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASInputPromptView.h; sourceTree = "<group>"; };
+		10F8E4631F18A00600E579AD /* ASInputPromptView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASInputPromptView.m; sourceTree = "<group>"; };
 		A5866BED1F0F332B00136E80 /* TextFieldDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TextFieldDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5866BF11F0F332B00136E80 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		A5866BF31F0F332B00136E80 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -84,8 +87,10 @@
 		103BBF4B1F13589700A4F3BB /* textField */ = {
 			isa = PBXGroup;
 			children = (
-				103BBF4C1F13589700A4F3BB /* ASTextField.h */,
-				103BBF4D1F13589700A4F3BB /* ASTextField.m */,
+				10F8E45F1F17659500E579AD /* ASTextField.h */,
+				10F8E4601F17659500E579AD /* ASTextField.m */,
+				10F8E4621F18A00600E579AD /* ASInputPromptView.h */,
+				10F8E4631F18A00600E579AD /* ASInputPromptView.m */,
 			);
 			path = textField;
 			sourceTree = "<group>";
@@ -290,8 +295,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				A5866BF81F0F332B00136E80 /* ViewController.m in Sources */,
-				103BBF4E1F13589700A4F3BB /* ASTextField.m in Sources */,
+				10F8E4611F17659500E579AD /* ASTextField.m in Sources */,
 				A5866BF51F0F332B00136E80 /* AppDelegate.m in Sources */,
+				10F8E4641F18A00600E579AD /* ASInputPromptView.m in Sources */,
 				A5866BF21F0F332B00136E80 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -27,10 +27,8 @@
     self.textfield2.delegate = self;
     self.textfield3.delegate = self;
     
-    
     [self.textfield2 addTarget:self action:@selector(textFieldTextChange:) forControlEvents:UIControlEventEditingChanged];
 }
-
 
 
 -(void)textFieldTextChange:(UITextField *)textField{
@@ -45,14 +43,7 @@
 
 - (BOOL)textField:(ASTextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     
-    return [textField textField:textField shouldChangeWithString:string];
+    return [textField shouldChangeWithString:string];
 }
-
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 
 @end
