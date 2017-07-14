@@ -9,6 +9,9 @@
   ![image](https://github.com/breeze233/TextFieldDemo/blob/master/picture/hex.png)
   3. 可以 修改输入框的PlaceHold 文字颜色 和 大小 及所在位置
    ![image](https://github.com/breeze233/TextFieldDemo/blob/master/picture/hold.png)
+  4.进入编辑模式时,controller的视图 偏移出合理的位置  
+  5.在键盘上方加入了一个 view用于显示编辑的文案 点击可退出编辑模式
+  ![image](https://github.com/breeze233/TextFieldDemo/blob/master/picture/move.gif)
 # 使用 （可在Storyboard 中用 kayPath 设置）
   StoryBoard 继承 ASTextField
   kayPath 设置
