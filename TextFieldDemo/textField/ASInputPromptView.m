@@ -10,6 +10,17 @@
 #import "ASInputPromptView.h"
 #import "ASTextField.h"
 
+static const CGFloat inputViewHeight = 35.0f;
+
+@interface ASInputPromptView ()
+
+@property (assign, nonatomic) CGFloat textY;
+
+@property (strong, nonatomic) UIButton * frontButton;
+@property (strong, nonatomic) UIButton * nextButton;
+@end
+
+
 @implementation ASInputPromptView
 /** ---------------------------单利模式--------------------------- */
 #pragma mark - 单利模式
@@ -17,7 +28,7 @@
 static id _instance = nil;
 //单例方法
 +(instancetype)shared{
-    return [[self alloc] init];
+    return [[self alloc] initWithFrame:CGRectMake(0, ScreenHeight, ScreenWidth, inputViewHeight)];
 }
 ////alloc会调用allocWithZone:
 +(instancetype)allocWithZone:(struct _NSZone *)zone{
@@ -64,12 +75,83 @@ static id _instance = nil;
 
 /** ------------------------------------------------------------------*/
 
+- (NSMutableArray *)textFieldArr{
+    if (!_textFieldArr) {
+        _textFieldArr = [NSMutableArray array];
+    }
+    if (_textFieldArr.count < 2 ) {
+        return  _textFieldArr;
+    }
+    
+    NSArray *tempArr =[_textFieldArr sortedArrayUsingComparator:^NSComparisonResult(UITextField * textField1, UITextField * textField2) {
+    
+        if([self findControllerViewWith:textField1] < [self findControllerViewWith:textField2]){
+            // 升序
+            return NSOrderedAscending;
+        }
+        
+        if([self findControllerViewWith:textField1] > [self findControllerViewWith:textField2]){
+            // 降序
+            return NSOrderedDescending;
+        }
+        // 相同不变
+        return NSOrderedSame;  
+    }];
+    
+    _textFieldArr = [NSMutableArray arrayWithArray:tempArr];
+    
+    return _textFieldArr;
+}
+
+- (CGFloat )findControllerViewWith:(UIView *)view {
+    self.textY = 0;
+    [self findControllerView:view];
+    return self.textY;
+}
+
+- (void)setCurrectTextField:(UITextField *)currectTextField{
+    
+    _currectTextField = currectTextField;
+    
+    for (NSInteger index = 0; index < self.textFieldArr.count; index++) {
+        if ([self.textFieldArr[index] isEqual:currectTextField]) {
+            self.focusIndex = index;
+        }
+    }    
+}
+
+- (void)findControllerView:(UIView *)view {
+    @try {
+        if ([view.superview isEqual:[self getCurrentViewControllerFromView:view].view]) {
+            NSLog(@"findControllerViewWith \\\%@",view.superview);
+            self.textY = self.textY + view.frame.origin.y;
+        }else{
+            [self findControllerView:view.superview];
+            self.textY = self.textY + view.frame.origin.y;
+        }
+        
+    } @catch (NSException *exception) { } @finally { }
+}
+/** 获取当前View的控制器对象 */
+-(UIViewController *)getCurrentViewControllerFromView:(UIView *)view{
+    
+    UIResponder *next = [view nextResponder];
+    do {
+        if ([next isKindOfClass:[UIViewController class]]) {
+            return (UIViewController *)next;
+        }
+        next = [next nextResponder];
+    } while (next != nil);
+    return nil;
+}
+
 - (void)initialize {
     
-    self.backgroundColor = [UIColor colorWithRed:242/255.0 green:242/255.0 blue:242/255.0 alpha:1];
+    UIToolbar *bar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth , inputViewHeight)];
+    [self addSubview:bar];
     
     self.textField = ({
-        ASTextField * textField = [[ASTextField alloc] initWithFrame:CGRectMake(10, 0, ScreenWidth - 50 , 30)];
+        ASTextField * textField = [[ASTextField alloc] initWithFrame:CGRectMake(90, 0, ScreenWidth - 130 , inputViewHeight)];
         textField.borderStyle = UITextBorderStyleNone;
         textField.userInteractionEnabled = false;
         textField.backgroundColor = [UIColor clearColor];
@@ -80,15 +162,83 @@ static id _instance = nil;
     
     self.achieveButton = ({
         UIButton * button =  [UIButton buttonWithType:UIButtonTypeSystem];
-        button.frame = CGRectMake(0, 0, ScreenWidth - 10, 30);
+        button.frame = CGRectMake(100, 0, ScreenWidth - 110, inputViewHeight);
         button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
         button.userInteractionEnabled = true;
         [button setTintColor:[UIColor blackColor]];
+        [button.titleLabel setFont:[UIFont boldSystemFontOfSize:15]];
         button.titleLabel.text = @"完成";
         [button setTitle:@"完成" forState:UIControlStateNormal];
         [self addSubview:button];
         self.achieveButton = button;
     });
-
+    
+    self.frontButton = ({
+        UIButton * button =  [UIButton buttonWithType:UIButtonTypeSystem];
+        button.frame = CGRectMake(5, 0, 25, inputViewHeight);
+        button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+        button.titleLabel.font = [UIFont systemFontOfSize:13];
+        button.userInteractionEnabled = true;
+        [button setTintColor:[UIColor blackColor]];
+        [button setImage:[UIImage imageNamed:@"front"] forState:UIControlStateNormal];
+        [button addTarget:self action:@selector(frontClick) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:button];
+        self.frontButton = button;
+    });
+    
+    
+    self.nextButton = ({
+        UIButton * button =  [UIButton buttonWithType:UIButtonTypeSystem];
+        button.frame = CGRectMake(40, 0, 25, inputViewHeight);
+        button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+        button.titleLabel.font = [UIFont systemFontOfSize:13];
+        button.userInteractionEnabled = true;
+        [button setTintColor:[UIColor blackColor]];
+        [button setImage:[UIImage imageNamed:@"next"] forState:UIControlStateNormal];
+        [button addTarget:self action:@selector(nextClick) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:button];
+        self.nextButton = button;
+    });
+    self.focusIndex = 0;
+    
 }
+
+- (void)setFocusIndex:(NSInteger)focusIndex{
+    
+    self.frontButton.enabled = true;
+    self.nextButton.enabled = true;
+    
+    _focusIndex = focusIndex;
+    if (_focusIndex == 0) {
+        self.frontButton.enabled = false;
+    }else
+    if (_focusIndex == self.textFieldArr.count - 1) {
+        self.nextButton.enabled = false;
+    }
+}
+
+- (void)frontClick {
+    for (NSInteger index = 0; index < self.textFieldArr.count - 1 ; index++) {
+        if (self.textFieldArr[index].isFirstResponder && index != 0 ) {
+            self.focusIndex = index;
+        }
+    }
+    
+    if ( self.focusIndex > 0) {
+        [self.textFieldArr[self.focusIndex - 1] becomeFirstResponder];
+    }
+}
+
+- (void)nextClick {
+    for (NSInteger index = 0;index < self.textFieldArr.count - 1; index++) {
+        if (self.textFieldArr[index].isFirstResponder && index != self.textFieldArr.count - 1 ) {
+            self.focusIndex = index;
+        }
+    }
+    if (self.focusIndex  < self.textFieldArr.count - 1 ) {
+        [self.textFieldArr[self.focusIndex + 1] becomeFirstResponder];
+    }
+    
+}
+
 @end

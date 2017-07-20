@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "ASTextField.h"
+#import "ASInputPromptView.h"
 
 @interface ViewController ()<UITextFieldDelegate>
 
@@ -16,18 +17,25 @@
 @property (weak, nonatomic) IBOutlet UITextField *textfield3;
 @property (weak, nonatomic) IBOutlet UILabel *textLabel;
 
+
+@property (weak, nonatomic) IBOutlet UITextField *textfield4;
+@property (weak, nonatomic) IBOutlet UITextField *textfield5;
+@property (weak, nonatomic) IBOutlet UITextField *textfield6;
+@property (weak, nonatomic) IBOutlet UITextField *textfield7;
+
+
 @end
 
 @implementation ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-  
+    
     self.textfield1.delegate = self;
     self.textfield2.delegate = self;
     self.textfield3.delegate = self;
-    
     [self.textfield2 addTarget:self action:@selector(textFieldTextChange:) forControlEvents:UIControlEventEditingChanged];
+    
 }
 
 
@@ -44,6 +52,11 @@
 - (BOOL)textField:(ASTextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     
     return [textField shouldChangeWithString:string];
+}
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    
+    [self.view endEditing:true];
 }
 
 @end

@@ -43,6 +43,8 @@
         self.delegate = self;
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyBoardChange:) name:UIKeyboardWillChangeFrameNotification object:nil];
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyBoardDidHide:) name:UIKeyboardWillHideNotification object:nil];
+        [self addTarget:self action:@selector(textFieldTextChange:) forControlEvents:UIControlEventEditingChanged];
+
     }
     return self;
 }
@@ -116,6 +118,8 @@
     if (!self.isFirstResponder) {
         return;
     }
+    
+    
     
     NSDictionary *dict = notification.userInfo;
     NSValue *aValue = [dict objectForKey:UIKeyboardFrameEndUserInfoKey];
@@ -217,6 +221,8 @@
     if ([string isEqualToString:@""]) {
         return true;
     }
+    
+
     
     NSString *text = [self text];
     NSCharacterSet *characterSet = [NSCharacterSet characterSetWithCharactersInString:self.restrictionType];

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		106D7EBC1F1C627400F05A69 /* UITextField+ASInput.m in Sources */ = {isa = PBXBuildFile; fileRef = 106D7EBB1F1C627400F05A69 /* UITextField+ASInput.m */; };
 		10F8E4611F17659500E579AD /* ASTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 10F8E4601F17659500E579AD /* ASTextField.m */; };
 		10F8E4641F18A00600E579AD /* ASInputPromptView.m in Sources */ = {isa = PBXBuildFile; fileRef = 10F8E4631F18A00600E579AD /* ASInputPromptView.m */; };
 		A5866BF21F0F332B00136E80 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A5866BF11F0F332B00136E80 /* main.m */; };
@@ -37,6 +38,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		106D7EBA1F1C627400F05A69 /* UITextField+ASInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+ASInput.h"; sourceTree = "<group>"; };
+		106D7EBB1F1C627400F05A69 /* UITextField+ASInput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+ASInput.m"; sourceTree = "<group>"; };
 		10F8E45F1F17659500E579AD /* ASTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASTextField.h; sourceTree = "<group>"; };
 		10F8E4601F17659500E579AD /* ASTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASTextField.m; sourceTree = "<group>"; };
 		10F8E4621F18A00600E579AD /* ASInputPromptView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASInputPromptView.h; sourceTree = "<group>"; };
@@ -91,6 +94,8 @@
 				10F8E4601F17659500E579AD /* ASTextField.m */,
 				10F8E4621F18A00600E579AD /* ASInputPromptView.h */,
 				10F8E4631F18A00600E579AD /* ASInputPromptView.m */,
+				106D7EBA1F1C627400F05A69 /* UITextField+ASInput.h */,
+				106D7EBB1F1C627400F05A69 /* UITextField+ASInput.m */,
 			);
 			path = textField;
 			sourceTree = "<group>";
@@ -298,6 +303,7 @@
 				10F8E4611F17659500E579AD /* ASTextField.m in Sources */,
 				A5866BF51F0F332B00136E80 /* AppDelegate.m in Sources */,
 				10F8E4641F18A00600E579AD /* ASInputPromptView.m in Sources */,
+				106D7EBC1F1C627400F05A69 /* UITextField+ASInput.m in Sources */,
 				A5866BF21F0F332B00136E80 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

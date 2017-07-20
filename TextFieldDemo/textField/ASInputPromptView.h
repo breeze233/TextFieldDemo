@@ -7,10 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
-@class ASTextField;
 @interface ASInputPromptView: UIView
-@property (strong, nonatomic) ASTextField *textField;
+@property (strong, nonatomic) UITextField *textField;
 @property (strong, nonatomic) UIButton * achieveButton;
 
+@property (strong, nonatomic) NSString * currectViewStr;
+
+@property (assign, nonatomic) NSInteger focusIndex;
+
+@property (strong, nonatomic) UITextField * currectTextField;
+
+@property(strong, nonatomic) NSMutableArray <UITextField *> * textFieldArr;
+
 +(instancetype)shared;
+
 @end
